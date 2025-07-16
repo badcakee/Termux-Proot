@@ -2,6 +2,8 @@
 
 if [ "$1" = "login" ] && [ -n "$2" ]; then
   proot-distro login "$2"
+  clear
+  echo "✅ Successfully logged in"
 else
   echo "Usage: btr login <distro>"
 fi
