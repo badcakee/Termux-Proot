@@ -3,6 +3,9 @@
 echo Updating
 pkg update
 
+echo Installing BadTermuxRoot
+curl -fsSL https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/btr.sh | bash
+
 echo "Choose a distro:"
 echo "1) Debian"
 echo "2) Ubuntu"
