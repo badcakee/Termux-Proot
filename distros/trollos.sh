@@ -8,13 +8,17 @@ echo "Installation:"
 echo "NOTICE: it installs actual settings you chose into the directory the script is in so u dont have to make the installation again."
 echo
 
+# Step 1
 read -p "1. Username for new user: " userUsername
 
+# Step 2
 read -p "2. Password for new user (leave empty for no password login): " -s userPassword
 echo
 
+# Step 3
 read -p "3. Username for root user: " rootUsername
 
+# Step 4
 while true; do
     read -p "4. Password for root user (required): " -s rootPassword
     echo
@@ -25,6 +29,7 @@ while true; do
     fi
 done
 
+# Step 5
 while true; do
     read -p "5. Do you want the developers to spy on you? (yes/no): " spyConsent
     if [[ "$spyConsent" == "yes" || "$spyConsent" == "no" ]]; then
@@ -32,7 +37,7 @@ while true; do
     fi
 done
 
-# Save to file
+# Save settings
 cat > trollos_settings.txt <<EOF
 Troll OS Settings
 ==================
@@ -45,12 +50,29 @@ EOF
 
 echo "✅ Settings saved to trollos_settings.txt"
 
-# Optional: Install packages
+# Optional Package Install
 echo
-read -p "Do you want to install basic tools (curl, git, htop)? (y/n): " installTools
+read -p "Do you want to install basic tools (curl, git, htop, neofetch)? (y/n): " installTools
 if [[ "$installTools" == "y" || "$installTools" == "Y" ]]; then
-    echo "Installing packages..."
-    sudo apt update
-    sudo apt install -y curl git htop
-    echo "✅ Packages installed."
+    if command -v apt >/dev/null 2>&1; then
+        echo "Updating package list..."
+        apt update
+
+        echo "Installing packages..."
+        apt install -y curl git htop neofetch 2>/dev/null
+
+        echo "✅ Packages installed."
+
+        # Optionally run neofetch
+        if command -v neofetch >/dev/null 2>&1; then
+            echo "Launching Neofetch..."
+            neofetch
+        else
+            echo "⚠️ Neofetch was not found after install. Maybe something failed."
+        fi
+    else
+        echo "❌ 'apt' not found. Your proot-distro may not support package installation."
+    fi
+else
+    echo "⏩ Skipping package installation."
 fi
