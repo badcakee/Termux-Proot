@@ -53,6 +53,7 @@ echo "✅ Settings saved to trollos_settings.txt"
 # Optional Package Install
 echo
 read -p "Do you want to install basic tools (curl, git, htop, neofetch)? (y/n): " installTools
+
 if [[ "$installTools" == "y" || "$installTools" == "Y" ]]; then
     if command -v apt >/dev/null 2>&1; then
         echo "Updating package list..."
@@ -63,16 +64,63 @@ if [[ "$installTools" == "y" || "$installTools" == "Y" ]]; then
 
         echo "✅ Packages installed."
 
-        # Optionally run neofetch
+        # Run neofetch with Troll OS branding
         if command -v neofetch >/dev/null 2>&1; then
             echo "Launching Neofetch..."
-            neofetch
+            neofetch --ascii_distro "Troll OS"
         else
             echo "⚠️ Neofetch was not found after install. Maybe something failed."
         fi
     else
         echo "❌ 'apt' not found. Your proot-distro may not support package installation."
+        login_prompt
     fi
 else
     echo "⏩ Skipping package installation."
+    login_prompt
 fi
+
+# Function to simulate login prompt with guest mode
+login_prompt() {
+    echo
+    echo "=== Troll OS Login ==="
+    while true; do
+        echo "Type 'guest' as username for guest mode (no settings saved)."
+        read -p "Username: " loginUser
+
+        if [[ "$loginUser" == "guest" ]]; then
+            echo "Logged in as Guest. No settings will be saved."
+            guest_mode
+            break
+        fi
+
+        read -s -p "Password: " loginPass
+        echo
+        if [[ "$loginUser" == "$userUsername" ]]; then
+            if [[ -z "$userPassword" || "$loginPass" == "$userPassword" ]]; then
+                echo "Welcome, $loginUser! You are now logged in to Troll OS."
+                break
+            else
+                echo "Incorrect password. Try again."
+            fi
+        else
+            echo "Unknown user. Try again."
+        fi
+    done
+}
+
+guest_mode() {
+    echo
+    echo "Welcome to Troll OS Guest Session!"
+    echo "No settings will be saved."
+    echo "(Type 'exit' to quit guest mode)"
+    while true; do
+        read -p "guest@trollos> " cmd
+        if [[ "$cmd" == "exit" ]]; then
+            echo "Exiting guest session..."
+            break
+        fi
+        echo "You ran: $cmd"
+        # You can add more guest commands or just simulate a shell here
+    done
+}
