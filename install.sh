@@ -3,7 +3,7 @@
 echo Updating
 pkg update
 
-echo Installing BadTermuxRoot
+echo Installing BTR
 mkdir -p ~/bin
 curl -fsSL https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/btr.sh -o ~/bin/btr
 chmod +x ~/bin/btr
