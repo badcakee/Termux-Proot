@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo Installing dependencies
-apt install curl -y
+echo Updating
+pkg update
 
 echo "Choose a distro:"
 echo "1) Debian"
