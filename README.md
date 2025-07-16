@@ -6,4 +6,6 @@ bash <(curl -s https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads
 ```
 
 ## How to log back in?
-Log back in using **proot-distro login <distro>**
+Log back in using ```bash
+proot-distro login <distro>
+```
