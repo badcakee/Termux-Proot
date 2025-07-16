@@ -4,7 +4,11 @@ echo Updating
 pkg update
 
 echo Installing BadTermuxRoot
-curl -fsSL https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/btr.sh | bash
+mkdir -p ~/bin
+curl -fsSL https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/btr.sh -o ~/bin/btr
+chmod +x ~/bin/btr
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
 
 echo "Choose a distro:"
 echo "1) Debian"
