@@ -1,5 +1,12 @@
 #!/bin/bash
 
+pkg update 
+pkg install proot-distro -y 
+proot-distro install ubuntu 
+clear 
+echo ✅ Successfully installed Troolos, please continue with the installation process. Thank you for using my script :D
+proot-distro login ubuntu
+
 echo "Welcome to Troll OS!"
 echo "This OS Was Made By Tozter_1."
 echo "Enjoy!"
