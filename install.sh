@@ -24,7 +24,7 @@ echo "10) Opensuse"
 echo "11) Pardus"
 echo "12) Rockylinux"
 echo "13) Void"
-echo "14) Trollos (might not work)"
+echo "14) Trollos (soon)"
 read -p "Enter a number (1-14): " choice
 
 case $choice in
@@ -41,6 +41,6 @@ case $choice in
   11) bash <(curl -s https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/distros/pardus.sh) ;;
   12) bash <(curl -s https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/distros/rockylinux.sh) ;;
   13) bash <(curl -s https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/distros/void.sh) ;;
-  14) bash <(curl -s https://raw.githubusercontent.com/badcakee/Termux-Root/refs/heads/main/distros/trollos.sh) ;;
+  14) echo "doesn't it say soon?" ;;
   *) echo "Invalid choice. Please enter a number from 1 to 14." ;;
 esac
